@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>
+            Calendar
+        </ion-title>
+    </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-button expand="block" fill="solid" (click)="showHideForm()">
+            Toggle Event Form
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row *ngIf="!showAddEvent">
+        <ion-col size="2">
+            <ion-button fill="clear" (click)="back()">
+                <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-col>
+        <ion-col size="8" class="ion-text-center">
+            <h2>{{ currentMonth }}</h2>
+        </ion-col>
+        <ion-col size="2">
+            <ion-button fill="clear" (click)="next()">
+                <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+
+    <calendar *ngIf="!showAddEvent" id="myCal" [eventSource]="allEvents" [calendarMode]="calendar.mode" [startHour]="0" noEventsLabel="There is no Event" [endHour]="23" [step]="30" [startingDayWeek]="1" [currentDate]="calendar.currentDate" (onTitleChanged)="onViewTitleChanged($event)"
+        (onEventSelected)="onEventSelected($event)">
+    </calendar>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="showHideForm()">
+            <ion-icon *ngIf="!showAddEvent" name="add"></ion-icon>
+            <ion-icon *ngIf="showAddEvent" name="close"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
