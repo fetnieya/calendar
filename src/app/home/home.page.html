@@ -5,13 +5,39 @@
         </ion-title>
     </ion-toolbar>
     <ion-toolbar color="primary">
-        <ion-button expand="block" fill="solid" (click)="showHideForm()">
-            Toggle Event Form
-        </ion-button>
+        <ion-buttons slot="start">
+            <ion-button color="light" (click)="today()">Today</ion-button>
+            <ion-button color="light" (click)="changeMode('month')">Month</ion-button>
+            <ion-button color="light" (click)="changeMode('week')">Week</ion-button>
+            <ion-button color="light" (click)="changeMode('day')">Day</ion-button>
+        </ion-buttons>
     </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+    <div *ngIf="showAddEvent" style="padding: 16px;">
+        <ion-item lines="none">
+            <ion-label position="stacked">Title :</ion-label>
+            <ion-input type="text" placeholder="Title" [(ngModel)]="newEvent.title"></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label position="stacked">Description :</ion-label>
+            <ion-input type="text" placeholder="Description" [(ngModel)]="newEvent.description"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label position="stacked"><b>Start Date:</b> </ion-label>
+            <ion-datetime doneText="Ok" cancelText="Cancel" displayFormat="DD/MM/YYYY  HH:mm" pickerFormat="MMM DHH:mm" [(ngModel)]="newEvent.startTime" min="minDate" display></ion-datetime>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label position="stacked"><b>End Date:</b> </ion-label>
+            <ion-datetime doneText="Ok" cancelText="Cancel" displayFormat="DD/MM/YYYY  HH:mm" pickerFormat="MMM DHH:mm" [(ngModel)]="newEvent.endTime" min="minDate" display></ion-datetime>
+        </ion-item>
+        <ion-button color="danger" expand="block" (click)="addEvent()" style="margin-top: 20px;">Add Event</ion-button>
+    </div>
+
+
     <ion-row *ngIf="!showAddEvent">
         <ion-col size="2">
             <ion-button fill="clear" (click)="back()">

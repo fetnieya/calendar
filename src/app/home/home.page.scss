@@ -1,27 +1,38 @@
 #container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    // Responsivité
+    @media (max-width: 768px) {
+        padding: 10px;
+    }
 }
 
 #container strong {
-  font-size: 20px;
-  line-height: 26px;
+    font-size: 1.25rem; // Utilisation d'unités relatives pour l'adaptabilité
+    line-height: 1.6;
 }
 
 #container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #6c757d; // Meilleur contraste pour la lisibilité
+    margin: 0;
 }
 
 #container a {
-  text-decoration: none;
+    text-decoration: none;
+    color: #007bff; // Couleur pour une meilleure visibilité
+    &:hover,
+    &:focus {
+        text-decoration: underline; // Indication pour l'accessibilité
+        outline: none;
+    }
 }
